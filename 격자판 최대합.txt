@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(a){
+                let answer=0;
+                let sum1 = 0;
+                let sum2 = 0;
+                let sum3 = 0;
+                let sum4 = 0;
+                let n = a.length;
+                let max = Number.MIN_SAFE_INTEGER
+                for(var i=0; i<n; i++){
+                    sum1=0;
+                    sum2=0;
+                    sum3+=a[i][i]
+                    sum4+=a[i][n-i-1]
+                    for(var j=0; j<n; j++){
+                        sum1+=a[i][j];
+                        sum2+=a[j][i];
+                    }
+                    max= Math.max(max,sum1,sum2);
+                    }
+                    max=Math.max(max,sum3,sum4);
+                answer=max;
+                return answer;
+            }
+            
+            
+            let a = 
+            [[10,13,10,12,15],
+            [12,39,30,23,11],
+            [11,25,50,53,15],
+            [19,27,29,37,27],
+            [19,13,30,13,19]];
+            console.log(solution(a));
+        </script>
+    </body>
+</html>
