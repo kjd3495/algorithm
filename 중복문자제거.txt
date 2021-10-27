@@ -1,3 +1,4 @@
+<!-- 
 <html>
     <head>
         <meta charset="UTF-8">
@@ -16,3 +17,5 @@
         </script>
     </body>
 </html>
+<!-- 접근법: indexOf를 사용하여 중복문자를 제외한 문자만 answer값에 넣어준다.-->
+<!-- 노트: indexOf는 문자열에서 특정 문자 혹은 문자열의 위치를 찾아주는 함수이다.-->

@@ -1,0 +1,49 @@
+작성일 2021-10-27
+소요시간: 20분
+<!-- 입력받은 수를 뒤집은 후 그 값이 소수인 것만 출력한다. -->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+        function isPrime(num){
+            if(num===1){
+                return false;
+            }
+            for(let i=2;  i<parseInt(Math.sqrt(num));i++){
+                if(num%i===0){
+                    return false;
+                }
+            }
+            return true;
+        }   
+        function solution(arr){  
+                let answer=[];
+                for(let x of arr){
+                    let res=0;
+                    while(x){
+                        let t = x%10;
+                        res= res*10+t;
+                        x = Math.floor(x/10);
+                    }
+                    if(isPrime(res)){
+                        answer.push(res);
+                    }
+                }
+                
+                return answer;
+            }
+            
+            let arr = [32,55,62,20,250,370,200,30,100];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>
+<!-- 접근법 : 소수를 구하는 함수를 먼저 만들어주고 %10, /10을 사용한 while문을 통해 숫자를 뒤집는다.  이때 res변수를 선언하여
+1의 자리수부터 res에 넣고10을 곱하는 방식으로해서  입력받은 수를 뒤집어 준다. 그리고 소수를 구하는 함수에 값을 넣어 확인한 후 출력한다.-->
+<!-- 개선점 : 입력받은수를 toString을 통해 문자열로 바꾼후 split함수를 통해 각 자릿수를 분리하여 배열로 만든뒤 , reverse 함수를 통해 뒤집은 후 join 함수를 통해
+문자열로 바꾸고 이 값을 Number로 바꿔서 수를 뒤집는 방법도 있다.-->
+<!-- 노트 : 소수를 구하는 함수를 만들때는 그 수의 제곱근 까지만 검사하면 그 수가 소수인지 아닌지 확인 할 수 있다. 때문에 for문에서 
+parseInt(Math.sqrt(num))까지만 확인을 해주었다. -->
