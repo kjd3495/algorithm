@@ -1,0 +1,49 @@
+<!--작성일: 2021-10-29
+소요시간: 40분-->
+<!--담임선생님이 아이들에게 받고 싶은 선물의 가격과 배송비를 입력받아 선물을 해주려고 한다. 
+    가게에서 50%할인 쿠폰 한개(배송비는 포함되지 않음)와 정해진 예산으로 최대한 많은 아이들에게 졸업선물을 해주려고 할 때 최대 몇명에게 선물을 할 수 있는지 출력하는 문제이다.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+    function solution(arr,m){  
+                let answer=0;
+                let n = arr.length;
+                arr.sort((a,b)=>(a[0]+a[1])-(b[0]+b[1]));
+                for(let i=0; i<n; i++){
+                    let money= m-parseInt(arr[i][0]/2)+arr[i][1]
+                    let cnt=1;
+                    for(let j=0; j<n;j++){
+                        if(j!==i&&(arr[j][0]+arr[j][1])<=money){
+                            money-=(arr[j][0]+arr[j][1]);
+                            cnt++;
+                        }if(j!==i&&(arr[j][0]+arr[j][1])>money){
+                            break;
+                        }
+                    }
+                       answer=Math.max(answer,cnt);     
+                        
+                }
+                return answer;
+                
+            }
+            let m = 28;
+            let arr= [[6,6],
+                      [2,2], 
+                      [4,3], 
+                      [4,5],
+                      [10,3]]
+            console.log(solution(arr,m));
+
+        </script>
+    </body>
+</html>
+
+<!-- 접근법: 해당 문제는 완전탐색으로 해결할 수 있다. 학생들이 고른 상품의 가격과 배송비의 합으로 오름차순 정렬을 해준 뒤에 가격이 낮은 상품 부터 
+    차례대로 50% 할인 쿠폰을 썼을 때 몇개의 선물을 살 수 있는지 모든 경우의 수를 구한 뒤 비교해서 가장 많은 선물을 사는 경우를 출력한다.-->
+<!-- 노트: sort를 통해 선물을 가격 별로 오름차순하여서 최대 선물의 개수를 구하기 쉽게 만들었고 if문을 통해서 예산안에서 선물의 개수가 구해지도록 하였다. 
+    필요없이 for문이 돌아가는 것을 막기 위해서 j!==i&&(arr[j][0]+arr[j][1])>money 경우를 추가하여 예산을 초과하면 for문이 멈추게 만들었다. -->
