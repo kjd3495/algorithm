@@ -1,0 +1,35 @@
+<!--작성일 : 2021-11-01-->
+<!--문제내용 : 1부터 100까지의 자연수가 적힌 n장의 카드 중에서 (같은 숫자 카드가 여러개일 수 있음) 
+    3장을 뽑아 그 3장에 적힌 수를 모두 더하는 모든 경우를 기록할 때 k번째로 큰 수를 출력하는 문제이다.
+    단, 255, 255 ,233 ... 일 때 2번째로 큰 수는 233이다. k번째를 카운트 할 때 중복은 제외한다. -->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+        function solution(N,k){
+                let answer;
+                let tmp = new Set();
+                let n = N.length;
+                for(let i=0;i<n-2;i++){
+                    for(let j=i+1;j<n-1; j++){
+                        for(let s=j+1; s<n; s++){
+                            tmp.add(N[i]+N[j]+N[s]);
+                        }
+                    }
+                }
+                let arr=Array.from(tmp).sort((a,b)=>b-a);
+                answer=arr[k-1];
+                return answer;
+            }
+            let k = 3;
+            let N= [13,15,34,23,45,65,33,11,26,42];
+            console.log(solution(N,k));
+        </script>
+    </body>
+</html>
+<!--접근법 : 중복된 값을 카운트하지 않게 Set 생성자를 생성한 후 삼중 for문을 통해서 모든 3장의 합을 tmp에 저장한다.
+그 후 tmp를 배열화 해준 뒤 sort를 통해 내림차순으로 정렬하고 k번째 값을 출력하기 위해 k-1인덱스를 갖는 값을 출력해준다.
+    노트 : 중복 값을 없애기 위해서 Set 생성자를 tmp에 할당해 주었다. 그리고 sort를 사용하기 위해 tmp를 배열로 만들어 arr에 넣어줬다. -->
