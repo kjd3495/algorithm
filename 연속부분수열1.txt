@@ -1,0 +1,41 @@
+<!--작성일 : 2021-11-02-->
+<!--문제내용 : N개의 수로 이루어진 수열이 주어질 때 이 수열에서 연속부분수열의 합이 입력받은 m값이 되는 경우가 몇 번 인지 출력하는 문제입니다. -->
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>출력결과</title>
+        </head>
+        <body>
+            <script>
+                function solution(arr,m){
+                    let answer=0;
+                    let n = arr.length;
+                    let p1 = p2 =0;
+                    let cnt=0;
+                    let sum = 0;
+                    while(p1<n&&p2<n){
+                        if(sum<m){
+                            sum+=arr[p1];
+                            p1++;
+                        }else if(sum>m){
+                            sum-=arr[p2];
+                            p2++;
+                        }else if(sum===m){
+                        sum-=arr[p2];
+                        p2++;    
+                        cnt++;
+                        }
+                    }
+                    answer=cnt;
+                    return answer;
+                }
+                
+                let a=[1, 2, 1, 3, 1, 1, 1, 2];
+                let m =6;
+                console.log(solution(a,m));
+            </script>
+        </body>
+    </html>
+<!--접근법 : 연속부순수열의 합과 입력받은 수의 값이 같은 경우를 찾기 위해서 두개의 포인터를 만들어주고 입력받은 값보다 합이 작으면  
+    덧셈포인터를 움직이고 합이크거나 같으면 뺄셈포인터를 움직여서 입력받은 값과 합이 같은 부분수열의 개수를 구한다.
+    노트 : 투 포인터를 통해서 O(n)의 시간복잡도로 원하는 부분수열의 개수를 출력할 수 있다. -->
