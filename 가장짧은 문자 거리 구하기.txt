@@ -1,0 +1,44 @@
+<!--작성일: 2021-12-24-->
+<!--문제내용: 문자열과 문자가 주어지면 해당 문자열의 모든 문자가 주어진 문자와 떨어진 거리를 배열로 출력하시오.--!>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+    function solution(s,a){
+
+        let answer = [];
+        for(let x=0; x<s.length; x++){
+            let q=0;
+            let w=0;
+        
+        for(let i= 0; i<s.length; i++){
+
+            if(s[x+i]!==a){
+                q++;
+            }else{break}
+        }
+            for(let j = 0; j<x+1; j++){
+            if(s[x-j]!==a){
+                w++
+            }else{break}
+        }
+            answer.push(Math.min(q,w))
+    }
+                return answer ;
+            }
+        
+            let s="teachermode";
+            let a = "e"
+            console.log(solution(s,a));
+
+        </script>
+    </body>
+</html>
+
+<!-- 접근법 : 문자열의 각 문자에서 주어진 문자와의 최단 거리를 비교하려면 선택된 문자를 기준으로 문자열의 시작, 문자열의 끝 두가지 방향으로 나눠서
+탐색해야 최단거리를 구할 수 있다.  문자열 중 하나의 문자를 선택하는 for문과 선택된 문자를 기준으로 문자열의 시작 방향으로 탐색하는 for문,
+문자열의 끝 방향으로 탐색하는 for문 이렇게 세가지 for문을 만들었고 변수 q와 w를 선언해서 두 방향의 거리중 가까운 거리를 answer 배열안에 넣어서 문제를 해결하였다.
+--!>
