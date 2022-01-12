@@ -1,0 +1,39 @@
+<!--작성일: 2021-01-11
+소요시간: 15분-->
+<!--주어진 배열에서 연속된 k 개의 숫자의 합이 가장 클 때의 값을 출력하시오.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+    function solution(arr,n){
+            let answer = Number.MIN_SAFE_INTEGER;
+        
+            for(let i =0; i<arr.length-(n-1); i++){
+                let sum =0;
+                for(let j =i+(n-1); j>=i; j--){
+                sum += arr[j];
+                }
+                if(answer<sum){
+                    answer = sum;
+                }
+            }
+        
+                return answer;
+            }
+        
+            let arr=[12,15,11,20,25,10,20,19,13,15];
+            let n = 3;
+            console.log(solution(arr, n));
+
+        </script>
+    </body>
+</html>
+
+<!-- 접근법: 해당 문제는 주어진 n개 만큼의 수를 인자로 가지는 연속부분수열의 합이 가장 큰 경우의 값을 구하는 문제이다. 
+    이중 for문을 통해서 n개의 인자를 가지는 연속부분수열의 합을 구하고 합을 sum에 저장한다. sum과 answer를 비교해서 클 경우 answer값을 변경해준다.
+    
+-->
